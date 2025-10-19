@@ -11,8 +11,7 @@ function App() {
       <Container maxWidth="md" sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Routes>
           <Route path="/" element={<ModeSelectionScreen />} />
-          <Route path="/conversation/text" element={<ConversationScreen mode="text" />} />
-          <Route path="/conversation/voice" element={<ConversationScreen mode="voice" />} />
+          <Route path="/conversation/:mode" element={<ConversationScreen />} />
           <Route path="/settings" element={<ApiKeySettingsScreen />} />
         </Routes>
       </Container>
