@@ -59,9 +59,9 @@ com.aicoaching.conversation.app-jetified-animation-core-release-57 /Users/jamesp
 com.aicoaching.conversation.app-material-1.6.0-58 /Users/jamespaul/.gradle/caches/transforms-3/f44a9948c19371bf97da2e0ed6e2e77e/transformed/material-1.6.0/res
 com.aicoaching.conversation.app-fragment-1.2.5-59 /Users/jamespaul/.gradle/caches/transforms-3/f4f0d48dc44c4e03a94103da65fef89f/transformed/fragment-1.2.5/res
 com.aicoaching.conversation.app-jetified-foundation-layout-release-60 /Users/jamespaul/.gradle/caches/transforms-3/fe53c2680c7ceebc0e19ee5b3ee4cb28/transformed/jetified-foundation-layout-release/res
-com.aicoaching.conversation.app-resValues-61 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/build/generated/res/resValues/debug
-com.aicoaching.conversation.app-packageDebugResources-62 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.aicoaching.conversation.app-packageDebugResources-63 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.aicoaching.conversation.app-merged_res-64 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/build/intermediates/merged_res/debug
-com.aicoaching.conversation.app-debug-65 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/debug/res
-com.aicoaching.conversation.app-main-66 /Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/res
+com.aicoaching.conversation.app-resValues-61 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/build/generated/res/resValues/debug
+com.aicoaching.conversation.app-packageDebugResources-62 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.aicoaching.conversation.app-packageDebugResources-63 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.aicoaching.conversation.app-merged_res-64 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/build/intermediates/merged_res/debug
+com.aicoaching.conversation.app-debug-65 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/debug/res
+com.aicoaching.conversation.app-main-66 /Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/res

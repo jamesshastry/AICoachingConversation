@@ -3,6 +3,7 @@ package com.aicoaching.conversation.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import android.content.Context
+import com.aicoaching.conversation.config.DemoConfig
 import com.aicoaching.conversation.data.model.ConversationMessage
 import com.aicoaching.conversation.data.repository.ConversationRepository
 import com.aicoaching.conversation.utils.ApiKeyManager
@@ -16,6 +17,14 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     
     private val repository = ConversationRepository()
     private val apiKeyManager = ApiKeyManager(context)
+    
+    init {
+        // Initialize demo API keys if demo mode is enabled and no keys are saved
+        if (DemoConfig.ENABLE_DEMO_MODE && !apiKeyManager.hasApiKeys()) {
+            apiKeyManager.saveOpenAIKey(DemoConfig.DEMO_OPENAI_KEY)
+            apiKeyManager.saveElevenLabsKey(DemoConfig.DEMO_ELEVENLABS_KEY)
+        }
+    }
     
     private val _messages = MutableStateFlow<List<ConversationMessage>>(emptyList())
     val messages: StateFlow<List<ConversationMessage>> = _messages.asStateFlow()
@@ -43,7 +52,12 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     
     fun sendTextMessage(content: String) {
         val openAIKey = apiKeyManager.getOpenAIKey()
-        if (content.isBlank() || openAIKey == null) return
+        if (content.isBlank()) return
+        
+        if (openAIKey == null) {
+            _error.value = "OpenAI API key not found. Please configure your API keys in Settings."
+            return
+        }
         
         val userMessage = ConversationMessage(
             id = UUID.randomUUID().toString(),
@@ -82,7 +96,18 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     fun sendVoiceMessage(audioBase64: String) {
         val elevenLabsKey = apiKeyManager.getElevenLabsKey()
         val openAIKey = apiKeyManager.getOpenAIKey()
-        if (audioBase64.isBlank() || elevenLabsKey == null || openAIKey == null) return
+        
+        if (audioBase64.isBlank()) return
+        
+        if (elevenLabsKey == null) {
+            _error.value = "ElevenLabs API key not found. Please configure your API keys in Settings."
+            return
+        }
+        
+        if (openAIKey == null) {
+            _error.value = "OpenAI API key not found. Please configure your API keys in Settings."
+            return
+        }
         
         _isLoading.value = true
         _error.value = null

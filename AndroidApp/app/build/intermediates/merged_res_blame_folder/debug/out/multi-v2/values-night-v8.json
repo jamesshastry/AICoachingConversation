@@ -4,7 +4,7 @@
             "outputFile": "com.aicoaching.conversation.app-mergeDebugResources-63:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/res/values-night/themes.xml",
+                    "source": "/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/res/values-night/themes.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

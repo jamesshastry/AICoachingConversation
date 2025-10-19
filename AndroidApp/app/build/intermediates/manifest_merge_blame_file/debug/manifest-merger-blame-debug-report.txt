@@ -9,17 +9,17 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:5:5-67
-11-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:5:22-64
+11-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:5:5-67
+11-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:5:22-64
 12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-12-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:6:5-71
-12-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:6:22-68
+12-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:6:5-71
+12-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:6:22-68
 13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-13-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:7:5-81
-13-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:7:22-78
+13-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:7:5-81
+13-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:7:22-78
 14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-14-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:8:5-80
-14-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:8:22-77
+14-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:8:5-80
+14-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:8:22-77
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 15-->[androidx.media3:media3-common:1.1.1] /Users/jamespaul/.gradle/caches/transforms-3/61b45657665671a3cca6c326683b7956/transformed/jetified-media3-common-1.1.1/AndroidManifest.xml:24:5-79
 15-->[androidx.media3:media3-common:1.1.1] /Users/jamespaul/.gradle/caches/transforms-3/61b45657665671a3cca6c326683b7956/transformed/jetified-media3-common-1.1.1/AndroidManifest.xml:24:22-76
@@ -36,47 +36,47 @@
 21-->[androidx.core:core:1.12.0] /Users/jamespaul/.gradle/caches/transforms-3/4274967ed742c2d626134066010c679b/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
 22
 23    <application
-23-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:10:5-31:19
+23-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:10:5-31:19
 24        android:allowBackup="true"
-24-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:11:9-35
+24-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:11:9-35
 25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 25-->[androidx.core:core:1.12.0] /Users/jamespaul/.gradle/caches/transforms-3/4274967ed742c2d626134066010c679b/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 26        android:dataExtractionRules="@xml/data_extraction_rules"
-26-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:12:9-65
+26-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:12:9-65
 27        android:debuggable="true"
 28        android:extractNativeLibs="false"
 29        android:fullBackupContent="@xml/backup_rules"
-29-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:13:9-54
+29-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:13:9-54
 30        android:icon="@android:drawable/ic_menu_info_details"
-30-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:14:9-62
+30-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:14:9-62
 31        android:label="@string/app_name"
-31-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:15:9-41
+31-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:15:9-41
 32        android:roundIcon="@android:drawable/ic_menu_info_details"
-32-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:16:9-67
+32-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:16:9-67
 33        android:supportsRtl="true"
-33-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:17:9-35
+33-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:17:9-35
 34        android:testOnly="true"
 35        android:theme="@style/Theme.AICoachingConversation" >
-35-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:18:9-60
+35-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:18:9-60
 36        <activity
-36-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:20:9-30:20
+36-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:20:9-30:20
 37            android:name="com.aicoaching.conversation.MainActivity"
-37-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:21:13-41
+37-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:21:13-41
 38            android:exported="true"
-38-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:22:13-36
+38-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:22:13-36
 39            android:label="@string/app_name"
-39-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:23:13-45
+39-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:23:13-45
 40            android:theme="@style/Theme.AICoachingConversation" >
-40-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:24:13-64
+40-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:24:13-64
 41            <intent-filter>
-41-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:25:13-29:29
+41-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:25:13-29:29
 42                <action android:name="android.intent.action.MAIN" />
-42-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:26:17-69
-42-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:26:25-66
+42-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:26:17-69
+42-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:26:25-66
 43
 44                <category android:name="android.intent.category.LAUNCHER" />
-44-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:28:17-77
-44-->/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/AndroidManifest.xml:28:27-74
+44-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:28:17-77
+44-->/Users/jamespaul/Documents/Projects/AICoachingConversation/AndroidApp/app/src/main/AndroidManifest.xml:28:27-74
 45            </intent-filter>
 46        </activity>
 47        <activity

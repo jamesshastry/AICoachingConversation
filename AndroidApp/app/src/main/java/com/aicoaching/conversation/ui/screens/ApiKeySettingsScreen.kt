@@ -31,6 +31,8 @@ fun ApiKeySettingsScreen(
         if (DemoConfig.ENABLE_DEMO_MODE) {
             openAIKey = DemoConfig.DEMO_OPENAI_KEY
             elevenLabsKey = DemoConfig.DEMO_ELEVENLABS_KEY
+            // Automatically save demo keys
+            viewModel.setApiKeys(DemoConfig.DEMO_OPENAI_KEY, DemoConfig.DEMO_ELEVENLABS_KEY)
         }
     }
     
