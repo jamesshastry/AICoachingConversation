@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.aicoaching.conversation.config.DemoConfig
 import com.aicoaching.conversation.ui.viewmodel.ConversationViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ApiKeySettingsScreen(
     onBackPressed: () -> Unit,
