@@ -57,7 +57,7 @@ const ConversationScreen: React.FC = () => {
   }, [error, dispatch]);
 
   const sendTextMessage = async () => {
-    if (!textInput.trim() || !apiKeys?.openAIKey) return;
+    if (!textInput.trim()) return;
 
     const userMessage: ConversationMessage = {
       id: Date.now().toString(),
@@ -77,10 +77,7 @@ const ConversationScreen: React.FC = () => {
         content: msg.content,
       }));
 
-      const response = await ApiService.sendMessageToOpenAI(
-        conversationHistory,
-        apiKeys.openAIKey
-      );
+      const response = await ApiService.sendMessageToOpenAI(conversationHistory);
 
       const aiMessage: ConversationMessage = {
         id: (Date.now() + 1).toString(),
@@ -99,10 +96,6 @@ const ConversationScreen: React.FC = () => {
   };
 
   const handleVoiceRecording = async () => {
-    if (!apiKeys?.openAIKey || !apiKeys?.elevenLabsKey) {
-      dispatch(setError('API keys not configured'));
-      return;
-    }
 
     if (isRecording) {
       try {
@@ -112,10 +105,7 @@ const ConversationScreen: React.FC = () => {
         dispatch(setLoading(true));
         
         // Transcribe audio
-        const transcribedText = await ApiService.transcribeAudioWithElevenLabs(
-          audioBase64,
-          apiKeys.elevenLabsKey
-        );
+        const transcribedText = await ApiService.transcribeAudioWithElevenLabs(audioBase64);
 
         const userMessage: ConversationMessage = {
           id: Date.now().toString(),
@@ -133,10 +123,7 @@ const ConversationScreen: React.FC = () => {
           content: msg.content,
         }));
 
-        const response = await ApiService.sendMessageToOpenAI(
-          conversationHistory,
-          apiKeys.openAIKey
-        );
+        const response = await ApiService.sendMessageToOpenAI(conversationHistory);
 
         const aiMessage: ConversationMessage = {
           id: (Date.now() + 1).toString(),

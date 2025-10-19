@@ -50,3 +50,8 @@ services:
         value: true
       - key: REACT_APP_CACHE_DURATION
         value: 300000
+      # API Keys - Set these in Render.com dashboard Environment tab
+      - key: REACT_APP_OPENAI_API_KEY
+        sync: false  # This will prompt you to set the value in Render dashboard
+      - key: REACT_APP_ELEVENLABS_API_KEY
+        sync: false  # This will prompt you to set the value in Render dashboard

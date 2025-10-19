@@ -53,6 +53,10 @@ Ensure your WebApp folder contains all the necessary files:
    REACT_APP_MAX_MESSAGE_LENGTH=2000
    REACT_APP_ENABLE_CACHING=true
    REACT_APP_CACHE_DURATION=300000
+   
+   # REQUIRED API Keys - Replace with your actual keys
+   REACT_APP_OPENAI_API_KEY=sk-your-openai-api-key-here
+   REACT_APP_ELEVENLABS_API_KEY=your-elevenlabs-api-key-here
    ```
 
 4. **Deploy**
@@ -92,6 +96,24 @@ If you prefer a Node.js web service:
 ### Required Variables
 - `NODE_ENV=production`
 - `REACT_APP_ENVIRONMENT=production`
+- `REACT_APP_OPENAI_API_KEY` - Your OpenAI API key (starts with "sk-")
+- `REACT_APP_ELEVENLABS_API_KEY` - Your ElevenLabs API key
+
+### Getting API Keys
+
+#### OpenAI API Key
+1. Go to [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Sign in or create an account
+3. Click "Create new secret key"
+4. Copy the key (starts with "sk-")
+5. Set as `REACT_APP_OPENAI_API_KEY` in Render
+
+#### ElevenLabs API Key
+1. Go to [ElevenLabs](https://elevenlabs.io/)
+2. Sign in or create an account
+3. Go to Profile → API Key
+4. Copy your API key
+5. Set as `REACT_APP_ELEVENLABS_API_KEY` in Render
 
 ### Optional Configuration Variables
 - `REACT_APP_APP_NAME`: Application name
