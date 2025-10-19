@@ -1,8 +1,11 @@
 import axios from 'axios';
 import { OpenAIRequest, OpenAIResponse, ElevenLabsTranscriptionRequest, ElevenLabsTranscriptionResponse } from '../types';
 
-const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-const ELEVENLABS_API_URL = 'https://api.elevenlabs.io/v1/speech-to-text';
+const OPENAI_API_URL = process.env.REACT_APP_OPENAI_API_URL || 'https://api.openai.com/v1/chat/completions';
+const ELEVENLABS_API_URL = process.env.REACT_APP_ELEVENLABS_API_URL || 'https://api.elevenlabs.io/v1/speech-to-text';
+const OPENAI_MODEL = process.env.REACT_APP_OPENAI_MODEL || 'gpt-3.5-turbo';
+const OPENAI_MAX_TOKENS = parseInt(process.env.REACT_APP_OPENAI_MAX_TOKENS || '1000');
+const OPENAI_TEMPERATURE = parseFloat(process.env.REACT_APP_OPENAI_TEMPERATURE || '0.7');
 
 export class ApiService {
   static async sendMessageToOpenAI(
@@ -10,10 +13,10 @@ export class ApiService {
     apiKey: string
   ): Promise<string> {
     const request: OpenAIRequest = {
-      model: 'gpt-3.5-turbo',
+      model: OPENAI_MODEL,
       messages,
-      max_tokens: 1000,
-      temperature: 0.7,
+      max_tokens: OPENAI_MAX_TOKENS,
+      temperature: OPENAI_TEMPERATURE,
     };
 
     try {
