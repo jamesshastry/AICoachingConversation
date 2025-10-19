@@ -1,5 +1,7 @@
 package com.aicoaching.conversation.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class ConversationMessage(
     val id: String,
     val content: String,
@@ -16,7 +18,8 @@ data class OpenAIMessage(
 data class OpenAIRequest(
     val model: String = "gpt-3.5-turbo",
     val messages: List<OpenAIMessage>,
-    val max_tokens: Int = 1000,
+    @SerializedName("max_tokens")
+    val maxTokens: Int = 1000,
     val temperature: Double = 0.7
 )
 

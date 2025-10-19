@@ -21,9 +21,16 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     init {
         // Initialize demo API keys if demo mode is enabled and no keys are saved
         if (DemoConfig.ENABLE_DEMO_MODE && !apiKeyManager.hasApiKeys()) {
+            android.util.Log.d("ConversationViewModel", "Demo mode enabled, saving demo API keys")
             apiKeyManager.saveOpenAIKey(DemoConfig.DEMO_OPENAI_KEY)
             apiKeyManager.saveElevenLabsKey(DemoConfig.DEMO_ELEVENLABS_KEY)
+            android.util.Log.d("ConversationViewModel", "Demo API keys saved successfully")
+        } else {
+            android.util.Log.d("ConversationViewModel", "Demo mode disabled or keys already exist")
         }
+        
+        // Test API key retrieval
+        testApiKeyRetrieval()
     }
     
     private val _messages = MutableStateFlow<List<ConversationMessage>>(emptyList())
@@ -58,6 +65,9 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
             _error.value = "OpenAI API key not found. Please configure your API keys in Settings."
             return
         }
+        
+        // Debug: Log API key info (first 10 chars only for security)
+        android.util.Log.d("ConversationViewModel", "Using OpenAI API key: ${openAIKey.take(10)}...")
         
         val userMessage = ConversationMessage(
             id = UUID.randomUUID().toString(),
@@ -169,5 +179,14 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     
     fun clearMessages() {
         _messages.value = emptyList()
+    }
+    
+    fun testApiKeyRetrieval() {
+        val openAIKey = apiKeyManager.getOpenAIKey()
+        val elevenLabsKey = apiKeyManager.getElevenLabsKey()
+        
+        android.util.Log.d("ConversationViewModel", "OpenAI Key retrieved: ${openAIKey?.take(10)}...")
+        android.util.Log.d("ConversationViewModel", "ElevenLabs Key retrieved: ${elevenLabsKey?.take(10)}...")
+        android.util.Log.d("ConversationViewModel", "Has API keys: ${apiKeyManager.hasApiKeys()}")
     }
 }
