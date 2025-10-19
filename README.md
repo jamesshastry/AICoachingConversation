@@ -1,98 +1,92 @@
-# AI Coaching Conversation App
+# AI Coaching Conversation Platform
 
-An Android app that enables users to have conversations with an AI coach through both text and voice interactions.
+A comprehensive platform for AI-powered coaching conversations available on both Android and Web platforms.
+
+## Project Structure
+
+```
+AICoachingConversation/
+├── AndroidApp/          # Android application (Jetpack Compose)
+├── WebApp/             # Web application (React + TypeScript)
+└── README.md           # This file
+```
 
 ## Features
 
-- **Dual Interaction Modes**: Choose between text chat or voice conversation
-- **Voice Transcription**: Uses ElevenLabs API to transcribe voice messages to text
-- **AI Responses**: Integrates with OpenAI API for intelligent coaching responses
-- **Modern UI**: Built with Jetpack Compose for a modern, responsive interface
-- **Secure API Key Storage**: API keys are stored securely on the device
+### 🤖 AI Coaching Conversations
+- **Dual Platform Support**: Native Android app and modern web application
+- **Text & Voice Modes**: Choose between text chat or voice conversations
+- **OpenAI Integration**: Powered by GPT-3.5-turbo for intelligent coaching responses
+- **ElevenLabs Integration**: Voice transcription and text-to-speech capabilities
+- **Secure API Management**: Encrypted storage of API keys
 
-## Setup Instructions
+### 📱 Android App Features
+- **Modern UI**: Built with Jetpack Compose and Material3 design
+- **Native Performance**: Optimized for Android devices
+- **Offline Capability**: Local storage and caching
+- **Push Notifications**: Real-time conversation updates
+- **Biometric Security**: Secure API key storage
+
+### 🌐 Web App Features
+- **Responsive Design**: Works on desktop, tablet, and mobile browsers
+- **Real-time Communication**: WebSocket connections for instant responses
+- **Progressive Web App**: Installable on mobile devices
+- **Cross-platform**: Works on any device with a modern browser
+- **Cloud Sync**: Conversation history synchronized across devices
+
+## Quick Start
+
+### Android App
+```bash
+cd AndroidApp
+./gradlew assembleDebug
+```
+
+### Web App
+```bash
+cd WebApp
+npm install
+npm start
+```
+
+## API Keys Required
+
+Both applications require:
+- **OpenAI API Key**: For AI coaching responses
+- **ElevenLabs API Key**: For voice transcription and synthesis
+
+## Technology Stack
+
+### Android App
+- **Language**: Kotlin
+- **UI Framework**: Jetpack Compose
+- **Architecture**: MVVM with StateFlow
+- **Networking**: Retrofit + OkHttp
+- **Security**: EncryptedSharedPreferences
+- **Audio**: MediaRecorder + MediaPlayer
+
+### Web App
+- **Language**: TypeScript
+- **Framework**: React 18
+- **UI Library**: Material-UI (MUI)
+- **State Management**: Redux Toolkit
+- **Networking**: Axios
+- **Audio**: Web Audio API + Speech Recognition API
+- **Real-time**: Socket.io
+
+## Development
 
 ### Prerequisites
+- **Android**: Android Studio, JDK 11+
+- **Web**: Node.js 18+, npm/yarn
 
-1. **Android Studio** (latest version recommended)
-2. **Android SDK** with API level 24+ (Android 7.0)
-3. **OpenAI API Key** - Get yours from [OpenAI Platform](https://platform.openai.com/api-keys)
-4. **ElevenLabs API Key** - Get yours from [ElevenLabs](https://elevenlabs.io/)
-
-### Installation
-
-1. **Clone or download** this project to your local machine
-2. **Open Android Studio** and select "Open an existing project"
-3. **Navigate** to the project folder and select it
-4. **Wait** for Gradle sync to complete
-5. **Connect** an Android device or start an emulator
-6. **Run** the app by clicking the "Run" button
-
-### API Key Configuration
-
-1. **Launch** the app
-2. **Tap** "Configure API Keys" on the main screen
-3. **Enter** your OpenAI API key (starts with "sk-...")
-4. **Enter** your ElevenLabs API key
-5. **Tap** "Save API Keys"
-6. **Return** to the main screen and select your preferred conversation mode
-
-## Usage
-
-### Text Mode
-- Tap "Text Chat" on the main screen
-- Type your messages in the text field
-- Tap the send button to send your message
-- Receive text responses from the AI coach
-
-### Voice Mode
-- Tap "Voice Chat" on the main screen
-- Grant microphone permission when prompted
-- Tap the microphone button to start recording
-- Tap the stop button to end recording and send your message
-- Your voice will be transcribed and sent to the AI
-- Receive voice responses (tap play button to hear them)
-
-## Technical Details
-
-### Architecture
-- **MVVM Pattern** with ViewModel and StateFlow
-- **Jetpack Compose** for UI
-- **Retrofit** for API communication
-- **Coroutines** for asynchronous operations
-
-### API Integration
-- **OpenAI GPT-3.5-turbo** for AI responses
-- **ElevenLabs Speech-to-Text** for voice transcription
-- **Base64 encoding** for audio data transmission
-
-### Permissions
-- `RECORD_AUDIO` - Required for voice recording
-- `INTERNET` - Required for API calls
-- `WRITE_EXTERNAL_STORAGE` - For temporary audio files
-
-## Future Enhancements
-
-- Firebase Authentication integration
-- Conversation history with Firebase Database
-- Custom AI coaching instructions
-- Audio playback for voice responses
-- Conversation export functionality
-- Offline mode support
-
-## Troubleshooting
-
-### Common Issues
-
-1. **API Key Errors**: Ensure your API keys are valid and have sufficient credits
-2. **Microphone Permission**: Grant microphone permission in device settings if prompted
-3. **Network Issues**: Check your internet connection for API calls
-4. **Audio Recording**: Ensure your device has a working microphone
-
-### Support
-
-For technical issues or feature requests, please check the project documentation or contact the development team.
+### Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test on both platforms
+5. Submit a pull request
 
 ## License
 
-This project is for educational and personal use. Please ensure you comply with OpenAI and ElevenLabs terms of service when using their APIs.
+This project is licensed under the MIT License - see the LICENSE file for details.
