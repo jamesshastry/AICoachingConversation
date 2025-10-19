@@ -42,12 +42,25 @@ cd AndroidApp
 ./gradlew assembleDebug
 ```
 
-### Web App
+### Web App (Local Development)
 ```bash
 cd WebApp
 npm install
 npm start
 ```
+
+### Web App (Production Deployment)
+
+#### Deploy to Render.com
+1. Follow the guide in `WebApp/DEPLOYMENT.md`
+2. Set environment variables in Render dashboard
+3. Deploy as static site or web service
+
+#### Deploy to Replit
+1. Follow the guide in `WebApp/REPLIT_DEPLOYMENT.md`
+2. Import WebApp folder to Replit
+3. Set API keys in Replit Secrets
+4. Run the application
 
 ## API Keys Required
 
@@ -73,6 +86,7 @@ Both applications require:
 - **Networking**: Axios
 - **Audio**: Web Audio API + Speech Recognition API
 - **Real-time**: Socket.io
+- **Deployment**: Render.com, Replit
 
 ## Development
 

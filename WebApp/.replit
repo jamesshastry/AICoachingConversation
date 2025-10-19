@@ -1,0 +1,57 @@
+{
+  "name": "AI Coaching Conversation",
+  "description": "AI-powered coaching conversations with text and voice support",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "replit": "npm run build && npm start"
+  },
+  "keywords": [
+    "ai",
+    "coaching",
+    "conversation",
+    "openai",
+    "elevenlabs",
+    "react",
+    "typescript"
+  ],
+  "author": "AI Coaching Conversation Team",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
+    "@reduxjs/toolkit": "^1.9.7",
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "axios": "^1.6.0",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.18.0",
+    "react-scripts": "5.0.1",
+    "socket.io-client": "^4.7.4",
+    "typescript": "^4.9.5",
+    "web-vitals": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "replit": {
+    "language": "nodejs",
+    "run": "npm run replit",
+    "alwaysOn": false
+  }
+}
