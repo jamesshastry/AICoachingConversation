@@ -25,15 +25,15 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HOST=0.0.0.0 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "npx serve -s build -l 3000",
+    "serve": "npx serve -s build -l 5000",
     "server": "node server.js",
     "start:prod": "npm run build && npm run server",
     "replit": "npm run build && npm run server",
-    "dev": "react-scripts start"
+    "dev": "HOST=0.0.0.0 react-scripts start"
   },
   "eslintConfig": {
     "extends": [
