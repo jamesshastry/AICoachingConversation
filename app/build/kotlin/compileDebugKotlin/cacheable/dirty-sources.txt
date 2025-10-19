@@ -1,0 +1,17 @@
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/data/repository/ConversationRepository.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/theme/Theme.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/MainActivity.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/navigation/AppNavigation.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/theme/Color.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/utils/AudioPlayer.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/components/MessageBubble.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/viewmodel/ConversationViewModel.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/screens/ApiKeySettingsScreen.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/utils/ApiKeyManager.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/screens/ModeSelectionScreen.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/data/api/ApiServices.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/screens/ConversationScreen.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/ui/theme/Type.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/utils/AudioRecorder.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/config/DemoConfig.kt
+/Users/jamespaul/Documents/Projects/AICoachingConversation/app/src/main/java/com/aicoaching/conversation/data/model/Models.kt
