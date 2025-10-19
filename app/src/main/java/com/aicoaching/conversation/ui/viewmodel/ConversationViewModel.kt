@@ -2,6 +2,7 @@ package com.aicoaching.conversation.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import android.content.Context
 import com.aicoaching.conversation.data.model.ConversationMessage
 import com.aicoaching.conversation.data.repository.ConversationRepository
 import com.aicoaching.conversation.utils.ApiKeyManager
