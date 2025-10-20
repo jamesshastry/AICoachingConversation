@@ -31,10 +31,15 @@ data class Choice(
     val message: OpenAIMessage
 )
 
-data class ElevenLabsTranscriptionRequest(
-    val audio: String // Base64 encoded audio
+// OpenAI Voice Agents models
+data class VoiceAgentTranscriptionResponse(
+    val text: String
 )
 
-data class ElevenLabsTranscriptionResponse(
-    val text: String
+data class VoiceAgentSpeechRequest(
+    val model: String = "tts-1",
+    val input: String,
+    val voice: String = "alloy",
+    val response_format: String = "mp3",
+    val speed: Double = 1.0
 )

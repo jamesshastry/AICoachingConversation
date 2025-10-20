@@ -18,21 +18,18 @@ import com.aicoaching.conversation.ui.viewmodel.ConversationViewModel
 @Composable
 fun ApiKeySettingsScreen(
     onBackPressed: () -> Unit,
-    onKeysSaved: (openAIKey: String, elevenLabsKey: String) -> Unit,
+    onKeysSaved: (openAIKey: String) -> Unit,
     viewModel: ConversationViewModel
 ) {
     var openAIKey by remember { mutableStateOf("") }
-    var elevenLabsKey by remember { mutableStateOf("") }
     var showOpenAIKey by remember { mutableStateOf(false) }
-    var showElevenLabsKey by remember { mutableStateOf(false) }
     
     // Load existing API keys
     LaunchedEffect(Unit) {
         if (DemoConfig.ENABLE_DEMO_MODE) {
             openAIKey = DemoConfig.DEMO_OPENAI_KEY
-            elevenLabsKey = DemoConfig.DEMO_ELEVENLABS_KEY
-            // Automatically save demo keys
-            viewModel.setApiKeys(DemoConfig.DEMO_OPENAI_KEY, DemoConfig.DEMO_ELEVENLABS_KEY)
+            // Automatically save demo key
+            viewModel.setApiKeys(DemoConfig.DEMO_OPENAI_KEY)
         }
     }
     
@@ -55,7 +52,7 @@ fun ApiKeySettingsScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Configure your API keys to enable AI coaching conversations",
+                text = "Configure your OpenAI API key to enable AI coaching conversations with speech-to-speech functionality",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -78,40 +75,22 @@ fun ApiKeySettingsScreen(
                 }
             )
             
-            // ElevenLabs API Key
-            OutlinedTextField(
-                value = elevenLabsKey,
-                onValueChange = { elevenLabsKey = it },
-                label = { Text("ElevenLabs API Key") },
-                placeholder = { Text("Your ElevenLabs API key") },
-                modifier = Modifier.fillMaxWidth(),
-                visualTransformation = if (showElevenLabsKey) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    IconButton(onClick = { showElevenLabsKey = !showElevenLabsKey }) {
-                        Icon(
-                            painter = if (showElevenLabsKey) painterResource(android.R.drawable.ic_menu_view) else painterResource(android.R.drawable.ic_menu_close_clear_cancel),
-                            contentDescription = if (showElevenLabsKey) "Hide" else "Show"
-                        )
-                    }
-                }
-            )
-            
             Spacer(modifier = Modifier.weight(1f))
             
             Button(
                 onClick = {
-                    if (openAIKey.isNotBlank() && elevenLabsKey.isNotBlank()) {
-                        onKeysSaved(openAIKey, elevenLabsKey)
+                    if (openAIKey.isNotBlank()) {
+                        onKeysSaved(openAIKey)
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
-                enabled = openAIKey.isNotBlank() && elevenLabsKey.isNotBlank()
+                enabled = openAIKey.isNotBlank()
             ) {
-                Text("Save API Keys")
+                Text("Save API Key")
             }
             
             Text(
-                text = "Your API keys are stored securely on your device and are not shared with any third parties.",
+                text = "Your API key is stored securely on your device and is not shared with any third parties.",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

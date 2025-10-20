@@ -23,7 +23,6 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
         if (DemoConfig.ENABLE_DEMO_MODE && !apiKeyManager.hasApiKeys()) {
             android.util.Log.d("ConversationViewModel", "Demo mode enabled, saving demo API keys")
             apiKeyManager.saveOpenAIKey(DemoConfig.DEMO_OPENAI_KEY)
-            apiKeyManager.saveElevenLabsKey(DemoConfig.DEMO_ELEVENLABS_KEY)
             android.util.Log.d("ConversationViewModel", "Demo API keys saved successfully")
         } else {
             android.util.Log.d("ConversationViewModel", "Demo mode disabled or keys already exist")
@@ -48,9 +47,8 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     private val _isPlaying = MutableStateFlow(false)
     val isPlaying: StateFlow<Boolean> = _isPlaying.asStateFlow()
     
-    fun setApiKeys(openAIKey: String, elevenLabsKey: String) {
+    fun setApiKeys(openAIKey: String) {
         apiKeyManager.saveOpenAIKey(openAIKey)
-        apiKeyManager.saveElevenLabsKey(elevenLabsKey)
     }
     
     fun hasApiKeys(): Boolean {
@@ -104,15 +102,9 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     }
     
     fun sendVoiceMessage(audioBase64: String) {
-        val elevenLabsKey = apiKeyManager.getElevenLabsKey()
         val openAIKey = apiKeyManager.getOpenAIKey()
         
         if (audioBase64.isBlank()) return
-        
-        if (elevenLabsKey == null) {
-            _error.value = "ElevenLabs API key not found. Please configure your API keys in Settings."
-            return
-        }
         
         if (openAIKey == null) {
             _error.value = "OpenAI API key not found. Please configure your API keys in Settings."
@@ -123,10 +115,12 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
         _error.value = null
         
         viewModelScope.launch {
-            // First transcribe the audio
-            val transcriptionResult = repository.transcribeAudioWithElevenLabs(audioBase64, elevenLabsKey)
+            // First transcribe the audio using OpenAI Voice Agent
+            val transcriptionResult = repository.transcribeAudioWithVoiceAgent(audioBase64, openAIKey)
             transcriptionResult.fold(
                 onSuccess = { transcribedText ->
+                    android.util.Log.d("ConversationViewModel", "Transcription successful: $transcribedText")
+                    
                     val userMessage = ConversationMessage(
                         id = UUID.randomUUID().toString(),
                         content = transcribedText,
@@ -137,10 +131,12 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
                     
                     _messages.value = _messages.value + userMessage
                     
-                    // Then send to OpenAI
+                    // Then send to OpenAI for response
                     val openAIResult = repository.sendMessageToOpenAI(_messages.value, openAIKey)
                     openAIResult.fold(
                         onSuccess = { response ->
+                            android.util.Log.d("ConversationViewModel", "OpenAI response: $response")
+                            
                             val aiMessage = ConversationMessage(
                                 id = UUID.randomUUID().toString(),
                                 content = response,
@@ -149,7 +145,9 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
                                 isVoice = true
                             )
                             _messages.value = _messages.value + aiMessage
-                            _isLoading.value = false
+                            
+                            // Generate speech for the AI response using Voice Agent
+                            generateAndPlaySpeech(response, openAIKey)
                         },
                         onFailure = { exception ->
                             _error.value = exception.message ?: "OpenAI error occurred"
@@ -158,7 +156,25 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
                     )
                 },
                 onFailure = { exception ->
-                    _error.value = exception.message ?: "Transcription error occurred"
+                    _error.value = "Speech-to-text error: ${exception.message}"
+                    _isLoading.value = false
+                }
+            )
+        }
+    }
+    
+    private fun generateAndPlaySpeech(text: String, apiKey: String) {
+        viewModelScope.launch {
+            val speechResult = repository.generateSpeechWithVoiceAgent(text, apiKey)
+            speechResult.fold(
+                onSuccess = { audioBytes ->
+                    android.util.Log.d("ConversationViewModel", "Speech generated successfully, ${audioBytes.size} bytes")
+                    // TODO: Play the audio bytes using Android's MediaPlayer or ExoPlayer
+                    _isLoading.value = false
+                },
+                onFailure = { exception ->
+                    android.util.Log.e("ConversationViewModel", "Speech generation failed", exception)
+                    _error.value = "Speech generation error: ${exception.message}"
                     _isLoading.value = false
                 }
             )
@@ -183,10 +199,8 @@ class ConversationViewModel(private val context: Context) : ViewModel() {
     
     fun testApiKeyRetrieval() {
         val openAIKey = apiKeyManager.getOpenAIKey()
-        val elevenLabsKey = apiKeyManager.getElevenLabsKey()
         
         android.util.Log.d("ConversationViewModel", "OpenAI Key retrieved: ${openAIKey?.take(10)}...")
-        android.util.Log.d("ConversationViewModel", "ElevenLabs Key retrieved: ${elevenLabsKey?.take(10)}...")
-        android.util.Log.d("ConversationViewModel", "Has API keys: ${apiKeyManager.hasApiKeys()}")
+        android.util.Log.d("ConversationViewModel", "Has OpenAI key: ${openAIKey != null}")
     }
 }

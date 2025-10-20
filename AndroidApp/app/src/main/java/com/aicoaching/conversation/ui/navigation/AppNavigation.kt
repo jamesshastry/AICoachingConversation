@@ -58,8 +58,8 @@ fun AppNavigation(
                 onBackPressed = {
                     navController.popBackStack()
                 },
-                onKeysSaved = { openAIKey, elevenLabsKey ->
-                    viewModel.setApiKeys(openAIKey, elevenLabsKey)
+                onKeysSaved = { openAIKey ->
+                    viewModel.setApiKeys(openAIKey)
                     navController.popBackStack()
                 },
                 viewModel = viewModel

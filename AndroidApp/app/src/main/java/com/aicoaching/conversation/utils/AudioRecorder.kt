@@ -21,7 +21,7 @@ class AudioRecorder(private val context: Context) {
                 outputDir.mkdirs()
             }
             
-            outputFile = File(outputDir, "recording_${System.currentTimeMillis()}.3gp")
+            outputFile = File(outputDir, "recording_${System.currentTimeMillis()}.mp4")
             
             mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 MediaRecorder(context)
@@ -32,8 +32,8 @@ class AudioRecorder(private val context: Context) {
             
             mediaRecorder?.apply {
                 setAudioSource(MediaRecorder.AudioSource.MIC)
-                setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                 setOutputFile(outputFile!!.absolutePath)
                 prepare()
                 start()

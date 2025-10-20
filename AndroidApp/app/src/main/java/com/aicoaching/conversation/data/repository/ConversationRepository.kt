@@ -1,14 +1,18 @@
 package com.aicoaching.conversation.data.repository
 
-import com.aicoaching.conversation.data.api.ElevenLabsService
 import com.aicoaching.conversation.data.api.OpenAIService
+import com.aicoaching.conversation.data.api.VoiceAgentService
 import com.aicoaching.conversation.data.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import android.util.Base64
 import java.util.*
 
 class ConversationRepository {
@@ -27,14 +31,8 @@ class ConversationRepository {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     
-    private val elevenLabsRetrofit = Retrofit.Builder()
-        .baseUrl("https://api.elevenlabs.io/")
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    
     private val openAIService = openAIRetrofit.create(OpenAIService::class.java)
-    private val elevenLabsService = elevenLabsRetrofit.create(ElevenLabsService::class.java)
+    private val voiceAgentService = openAIRetrofit.create(VoiceAgentService::class.java)
     
     suspend fun sendMessageToOpenAI(
         messages: List<ConversationMessage>,
@@ -73,25 +71,102 @@ class ConversationRepository {
         }
     }
     
-    suspend fun transcribeAudioWithElevenLabs(
+    suspend fun transcribeAudioWithVoiceAgent(
         audioBase64: String,
         apiKey: String
     ): Result<String> = withContext(Dispatchers.IO) {
         try {
-            val request = ElevenLabsTranscriptionRequest(audio = audioBase64)
-            val response = elevenLabsService.transcribeAudio(apiKey, request)
+            android.util.Log.d("ConversationRepository", "Transcribing audio with OpenAI Voice Agent")
+            android.util.Log.d("ConversationRepository", "Audio base64 length: ${audioBase64.length}")
+            
+            // Convert base64 to bytes
+            val audioBytes = Base64.decode(audioBase64, Base64.DEFAULT)
+            android.util.Log.d("ConversationRepository", "Audio bytes length: ${audioBytes.size}")
+            
+            // Create multipart request body with correct MIME type for MP4
+            val requestBody = RequestBody.create(
+                "audio/mp4".toMediaType(),
+                audioBytes
+            )
+            
+            val filePart = MultipartBody.Part.createFormData(
+                "file",
+                "audio.mp4",
+                requestBody
+            )
+            
+            val modelBody = RequestBody.create(
+                "text/plain".toMediaType(),
+                "whisper-1"
+            )
+            
+            val languageBody = RequestBody.create(
+                "text/plain".toMediaType(),
+                "en"
+            )
+            
+            val responseFormatBody = RequestBody.create(
+                "text/plain".toMediaType(),
+                "json"
+            )
+            
+            val response = voiceAgentService.transcribeAudio(
+                "Bearer $apiKey",
+                filePart,
+                modelBody,
+                languageBody,
+                responseFormatBody
+            )
+            
+            android.util.Log.d("ConversationRepository", "Voice Agent transcription response code: ${response.code()}, message: ${response.message()}")
             
             if (response.isSuccessful) {
                 val responseBody = response.body()
                 if (responseBody?.text != null) {
+                    android.util.Log.d("ConversationRepository", "Transcription successful: ${responseBody.text}")
                     Result.success(responseBody.text)
                 } else {
-                    Result.failure(Exception("Empty transcription from ElevenLabs"))
+                    Result.failure(Exception("Empty transcription from Voice Agent"))
                 }
             } else {
-                Result.failure(Exception("ElevenLabs API error: ${response.code()} ${response.message()}"))
+                val errorBody = response.errorBody()?.string() ?: "No error body"
+                android.util.Log.e("ConversationRepository", "Voice Agent transcription error: ${response.code()} ${response.message()}, body: $errorBody")
+                Result.failure(Exception("Voice Agent transcription error: ${response.code()} ${response.message()}"))
             }
         } catch (e: Exception) {
+            android.util.Log.e("ConversationRepository", "Voice Agent transcription error", e)
+            Result.failure(e)
+        }
+    }
+    
+    suspend fun generateSpeechWithVoiceAgent(
+        text: String,
+        apiKey: String
+    ): Result<ByteArray> = withContext(Dispatchers.IO) {
+        try {
+            android.util.Log.d("ConversationRepository", "Generating speech with OpenAI Voice Agent")
+            
+            val request = VoiceAgentSpeechRequest(input = text)
+            val response = voiceAgentService.generateSpeech("Bearer $apiKey", request)
+            
+            android.util.Log.d("ConversationRepository", "Voice Agent TTS response code: ${response.code()}, message: ${response.message()}")
+            
+            if (response.isSuccessful) {
+                val responseBody = response.body()
+                if (responseBody != null) {
+                    val audioBytes = responseBody.bytes()
+                    android.util.Log.d("ConversationRepository", "Speech generation successful, ${audioBytes.size} bytes")
+                    Result.success(audioBytes)
+                } else {
+                    Result.failure(Exception("Empty audio response from Voice Agent"))
+                }
+            } else {
+                val errorBody = response.errorBody()?.string() ?: "No error body"
+                android.util.Log.e("ConversationRepository", "Voice Agent TTS error: ${response.code()} ${response.message()}, body: $errorBody")
+                Result.failure(Exception("Voice Agent TTS error: ${response.code()} ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("ConversationRepository", "Voice Agent TTS error", e)
             Result.failure(e)
         }
     }
